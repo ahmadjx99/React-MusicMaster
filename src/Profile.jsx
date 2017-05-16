@@ -3,16 +3,33 @@ import React, { Component } from 'react';
 class Profile extends Component {
 	
 	render() {
-		let artist = {name: '', followers: {total: ''}};
-
-		if (this.props.artist !== null) {
-			artist = this.props.artist;
-		}
+		let artist = {name: '', followers: {total: ''}, images: [{url : 'none.jpg'}], genres: []};
+		artist = this.props.artist !== null ?  this.props.artist : artist;
 
 		return(
-			<div>
-				<div>{artist.name}</div>
-				<div>{artist.followers.total}</div>
+			<div className="Profile">
+				<img
+					alt="Profile"
+					className="Profile-img"
+					src={artist.images[0].url}
+				/>
+				<div className="Profile-info">
+					<div className="Profile-name">{artist.name}</div>
+					<div className="Profile-followers">{artist.followers.total} followers</div>
+					<div className="Profile-genres">
+						{
+							artist.genres.map((genre, id) => {
+								
+								genre = genre !== artist.genres[artist.genres.length - 1] ? `${genre}, ` : `& ${genre}.`;
+
+								return(
+									<span key={id}>{genre}</span>
+								);
+							})
+						}
+					</div>
+				</div>
+				
 			</div>
 		);
 	}
