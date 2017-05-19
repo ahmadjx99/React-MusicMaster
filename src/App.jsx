@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { FormGroup, FormControl, InputGroup, Glyphicon } from 'react-bootstrap';
 import Profile from './Profile';
+import Gallery from './Gallery';
 
 class App extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class App extends Component {
     this.state = {
       query: '',
       artist: null,
-      tracks: null
+      tracks: []
     }
   }
 
@@ -60,10 +61,10 @@ class App extends Component {
               <Profile
                 artist={this.state.artist}
               />
-              <div className="Galery">
-                Gallery
-              </div>
-          </div>
+              <Gallery 
+              tracks={this.state.tracks} 
+              />
+          </div> // jika tidak.
           : <div></div>
 
         }
